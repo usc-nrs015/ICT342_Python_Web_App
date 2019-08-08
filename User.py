@@ -29,14 +29,16 @@ def index():
         ranges = ['short_term', 'medium_term', 'long_term']
         top_artists = sp.current_user_top_artists(10, 0, ranges[1])
         top_tracks = sp.current_user_top_tracks(10, 0, ranges[1])
-        results = {**top_artists, **top_tracks}
+        #results = {**top_artists, **top_tracks}
         # for i, item in enumerate(results['items']):
         # print( i, item['name'])
     else:
         print("Can't get token for", username)
+        top_artists = "No Results"
+        top_tracks = "No Results"
         results = "No Results"
 
-    return json.dumps(results, indent=4)
+    return json.dumps(top_artists, indent=4) + json.dumps(top_tracks, indent=4)
 
 
 if __name__ == '__main__':
