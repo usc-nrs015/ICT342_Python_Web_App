@@ -1,6 +1,6 @@
 import spotipy
 import spotipy.util as util
-
+import json
 import flask
 from flask import request
 app = flask.Flask(__name__)
@@ -36,7 +36,7 @@ def index():
         print("Can't get token for", username)
         results = "No Results"
 
-    return "Hello, Access Token: " + access_token + "\n \n" + results
+    return "Hello, Access Token: " + access_token + "\n \n" + json.dumps(results)
 
 
 if __name__ == '__main__':
