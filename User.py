@@ -38,5 +38,3 @@ def index():
     return "Hello Heruko " + access_token
     '''
     return "hello"
-
-app.run()
