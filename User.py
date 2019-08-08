@@ -37,7 +37,7 @@ def index():
         print("Can't get token for", username)
         results = "No Results"
 
-    return "Hello, Access Token: " + access_token + "\n \n" + json.dumps(results, indent=4)
+    return "Hello, Access Token: " + access_token + "\n \n" + json.dumps(results2, indent=4)
 
 
 if __name__ == '__main__':
