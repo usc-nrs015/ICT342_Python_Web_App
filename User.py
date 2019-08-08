@@ -27,8 +27,8 @@ def index():
         sp = spotipy.Spotify(token)  # Goal is to get token from mobile app that is stored.
         sp.trace = False
         ranges = ['short_term', 'medium_term', 'long_term']
-        results = sp.current_user_top_artists(10, 0, ranges[0])
-        results2 = sp.current_user_top_tracks(10, 0, ranges[0])
+        results = sp.current_user_top_artists(10, 0, ranges[2])
+        results2 = sp.current_user_top_tracks(10, 0, ranges[2])
         #print(results)
         print(results2)
         # for i, item in enumerate(results['items']):
