@@ -7,18 +7,19 @@ app = flask.Flask(__name__)
 
 @app.route("/python")
 def index():
+
     access_token = request.args.get('token')
     print(access_token)
-
+    ''''
     scope = 'user-top-read'
     username = 'nscha14'
     token = access_token
 
-    ''''
-    token = util.prompt_for_user_token(username, scope,
-                                       client_id='0281ed7b2a594e66a3b4a6c545b09000',
-                                       client_secret='99ba40fe5a2b43828c24da1da1d755b1',
-                                       redirect_uri='http://localhost/')
+    '''
+    #token = util.prompt_for_user_token(username, scope,
+                  #                     client_id='0281ed7b2a594e66a3b4a6c545b09000',
+                  #                     client_secret='99ba40fe5a2b43828c24da1da1d755b1',
+                   #                    redirect_uri='http://localhost/')
     '''
 
     print(token)
@@ -33,7 +34,7 @@ def index():
         # print( i, item['name'])
     else:
         print("Can't get token for", username)
-
+    '''
     return "Hello Heruko " + access_token
 
 
