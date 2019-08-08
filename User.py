@@ -10,7 +10,7 @@ def index():
 
     access_token = request.args.get('token')
     print(access_token)
-    '''
+
     scope = 'user-top-read'
     username = 'nscha14'
     token = access_token
@@ -34,8 +34,9 @@ def index():
         # print( i, item['name'])
     else:
         print("Can't get token for", username)
-    '''
-    return "Hello Heruko " + access_token
+        results = "No Results"
+
+    return "Hello, Access Token: " + access_token + "\n \n" + results
 
 
 if __name__ == '__main__':
