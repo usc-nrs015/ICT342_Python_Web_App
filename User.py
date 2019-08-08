@@ -38,3 +38,7 @@ def index():
     return "Hello Heruko " + access_token
     '''
     return "hello"
+
+
+if __name__ == '__main__':
+    app.run()
