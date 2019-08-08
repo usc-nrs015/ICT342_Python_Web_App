@@ -29,7 +29,8 @@ def index():
         ranges = ['short_term', 'medium_term', 'long_term']
         results = sp.current_user_top_artists(10, 0, ranges[1])
         results2 = sp.current_user_top_tracks(10, 0, ranges[1])
-        print(results)
+        #print(results)
+        print(results2)
         # for i, item in enumerate(results['items']):
         # print( i, item['name'])
     else:
