@@ -38,7 +38,8 @@ def index():
         top_tracks = "No Results"
         results = "No Results"
 
-    return json.dumps(top_artists, indent=4) + json.dumps(top_tracks, indent=4)
+    # Perhaps try returning an array
+    return "{top_artists:" + json.dumps(top_artists, indent=4) + ",top_tracks:" + json.dumps(top_tracks, indent=4) + "}"
 
 
 if __name__ == '__main__':
