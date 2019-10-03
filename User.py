@@ -3,6 +3,8 @@ import spotipy.util as util
 import json
 import flask
 from flask import request
+import pymongo
+
 app = flask.Flask(__name__)
 
 @app.route("/python")
@@ -38,8 +40,18 @@ def index():
         top_tracks = "No Results"
         results = "No Results"
 
-    # Perhaps try returning an array
-    return "{top_artists:" + json.dumps(top_artists, indent=4) + ",top_tracks:" + json.dumps(top_tracks, indent=4) + "}"
+    my_client = pymongo.MongoClient("mongodb+srv://nschafer99:FusionNSmongo@cluster0-3dhag.mongodb.net/admin?retryWrites=true&w=majority")
+    my_db = my_client["fusion_db"]
+    my_col = my_db["customers"]
+
+    json_string = '{"top_artists":' + json.dumps(top_artists, indent=4) + ',"top_tracks":' + json.dumps(top_tracks,
+                                                                                                        indent=4) + "}"
+    json_data = json.loads(json_string)
+
+    my_col.insert_one(json_data)
+
+    # Return json_string to the Android application
+    return json_string
 
 
 if __name__ == '__main__':

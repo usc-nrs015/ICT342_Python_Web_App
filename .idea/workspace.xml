@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/User.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="509">
+              <caret line="42" column="71" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="71" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -63,6 +63,15 @@
             <path>
               <item name="Python Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="Python Project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Python Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Python Project" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Python Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -198,8 +207,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/User.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="509">
+          <caret line="42" column="71" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="71" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
