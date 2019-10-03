@@ -50,8 +50,6 @@ def index():
     else:
         my_col.insert_one(json_data)
 
-    my_col.insert_one(json_data)
-
     # Return json_string to the Android application
     return json_string_android
 
