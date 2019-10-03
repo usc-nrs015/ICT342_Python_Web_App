@@ -14,15 +14,8 @@ def index():
     print(access_token)
 
     scope = 'user-top-read'
-    username = 'nscha14'
     token = access_token
 
-    '''
-    #token = util.prompt_for_user_token(username, scope,
-                  #                     client_id='0281ed7b2a594e66a3b4a6c545b09000',
-                  #                     client_secret='99ba40fe5a2b43828c24da1da1d755b1',
-                   #                    redirect_uri='http://localhost/')
-    '''
 
     print(token)
     if token:
@@ -31,11 +24,10 @@ def index():
         ranges = ['short_term', 'medium_term', 'long_term']
         top_artists = sp.current_user_top_artists(10, 0, ranges[1])
         top_tracks = sp.current_user_top_tracks(10, 0, ranges[1])
-        #results = {**top_artists, **top_tracks}
-        # for i, item in enumerate(results['items']):
-        # print( i, item['name'])
+        user_id = sp.current_user()["id"]
     else:
-        print("Can't get token for", username)
+        print("Can't get token for")
+        sp = "No Results"
         top_artists = "No Results"
         top_tracks = "No Results"
         results = "No Results"
@@ -44,14 +36,24 @@ def index():
     my_db = my_client["fusion_db"]
     my_col = my_db["customers"]
 
-    json_string = '{"top_artists":' + json.dumps(top_artists, indent=4) + ',"top_tracks":' + json.dumps(top_tracks,
+    user_id = sp.current_user()["id"]
+
+    json_string_android = '{"top_artists":' + json.dumps(top_artists, indent=4) + ',"top_tracks":' + json.dumps(top_tracks,
                                                                                                         indent=4) + "}"
-    json_data = json.loads(json_string)
+    json_string_mongo = '{"spotifyId":' + str(user_id) + "," + '"top_artists":' + json.dumps(
+        top_artists, indent=4) + ',"top_tracks":' + json.dumps(top_tracks, indent=4) + "}"
+
+    json_data = json.loads(json_string_mongo)
+
+    if my_col.count_documents({"spotifyId": int(user_id)}) > 0:
+        print("Already exists")
+    else:
+        my_col.insert_one(json_data)
 
     my_col.insert_one(json_data)
 
     # Return json_string to the Android application
-    return json_string
+    return json_string_android
 
 
 if __name__ == '__main__':
