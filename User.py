@@ -3,6 +3,7 @@ import json
 import flask
 from flask import request
 import pymongo
+from pymongo import errors
 
 app = flask.Flask(__name__)
 
@@ -49,8 +50,8 @@ def index():
             print("Already exists")
         else:
             my_col.insert_one(json_data)
-    except:
-        print("Error occurred")
+    except pymongo.errors.ConnectionFailure as e:
+        print("Error occurred", e)
 
     my_client.close()
 
