@@ -1,5 +1,4 @@
 import spotipy
-import spotipy.util as util
 import json
 import flask
 from flask import request
@@ -16,10 +15,9 @@ def index():
     scope = 'user-top-read'
     token = access_token
 
-
     print(token)
     if token:
-        sp = spotipy.Spotify(token)  # Goal is to get token from mobile app that is stored.
+        sp = spotipy.Spotify(token)
         sp.trace = False
         ranges = ['short_term', 'medium_term', 'long_term']
         top_artists = sp.current_user_top_artists(10, 0, ranges[1])
@@ -32,10 +30,6 @@ def index():
         top_tracks = "No Results"
         results = "No Results"
 
-    my_client = pymongo.MongoClient("mongodb+srv://nschafer99:FusionNSmongo@cluster0-3dhag.mongodb.net/admin?retryWrites=true&w=majority")
-    my_db = my_client["fusion_db"]
-    my_col = my_db["customers"]
-
     user_id = sp.current_user()["id"]
 
     json_string_android = '{"top_artists":' + json.dumps(top_artists, indent=4) + ',"top_tracks":' + json.dumps(top_tracks,
@@ -45,10 +39,18 @@ def index():
 
     json_data = json.loads(json_string_mongo)
 
-    if my_col.count_documents({"spotifyId": int(user_id)}) > 0:
-        print("Already exists")
-    else:
-        my_col.insert_one(json_data)
+    try:
+        my_client = pymongo.MongoClient("mongodb+srv://nschafer99:FusionNSmongo@cluster0-3dhag.mongodb.net/admin?retryWrites=true&w=majority")
+        my_db = my_client["fusion_db"]
+        my_col = my_db["customers"]
+        if my_col.count_documents({"spotifyId": int(user_id)}) > 0:
+            print("Already exists")
+        else:
+            my_col.insert_one(json_data)
+    except:
+        print("Error occurred")
+
+    my_client.close()
 
     # Return json_string to the Android application
     return json_string_android
