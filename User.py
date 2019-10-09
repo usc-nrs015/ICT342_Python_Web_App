@@ -43,7 +43,8 @@ def index():
     my_client = pymongo.MongoClient()
 
     try:
-        my_client = pymongo.MongoClient("mongodb+srv://nschafer99:FusionNSmongo@cluster0-3dhag.mongodb.net/admin?retryWrites=true&w=majority")
+        my_client = pymongo.MongoClient("mongodb+srv://nschafer99:FusionNSmongo@cluster0-3dhag.mongodb.net/admin?retryWrites=true&w=majority",
+                                        connectTimeoutMS=10000, serverSelectionTimeoutMS=10000)
         my_db = my_client["fusion_db"]
         my_col = my_db["customers"]
         if my_col.count_documents({"spotifyId": int(user_id)}) > 0:
