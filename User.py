@@ -39,6 +39,8 @@ def index():
 
     json_data = json.loads(json_string_mongo)
 
+    my_client = pymongo.MongoClient()
+
     try:
         my_client = pymongo.MongoClient("mongodb+srv://nschafer99:FusionNSmongo@cluster0-3dhag.mongodb.net/admin?retryWrites=true&w=majority")
         my_db = my_client["fusion_db"]
