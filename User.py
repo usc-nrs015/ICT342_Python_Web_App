@@ -53,7 +53,7 @@ def index():
         else:
             print("2")
             spotify_id = str(user_id)
-        if my_col.count_documents({"spotifyId": int(spotify_id)}) > 0:
+        if my_col.count_documents({"spotifyId": spotify_id}) > 0:
             print("Already exists")
         else:
             my_col.insert_one(json_data)
