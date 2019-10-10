@@ -35,7 +35,7 @@ def index():
 
     json_string_android = '{"top_artists":' + json.dumps(top_artists, indent=4) + ',"top_tracks":' + json.dumps(top_tracks,
                                                                                                         indent=4) + "}"
-    json_string_mongo = '{"spotifyId":' + str(user_id) + "," + '"top_artists":' + json.dumps(
+    json_string_mongo = '{"spotifyId":' + '"' + str(user_id) + '"' + "," + '"top_artists":' + json.dumps(
         top_artists, indent=4) + ',"top_tracks":' + json.dumps(top_tracks, indent=4) + "}"
 
     json_data = json.loads(json_string_mongo)
@@ -47,7 +47,13 @@ def index():
                                         connectTimeoutMS=10000, serverSelectionTimeoutMS=10000)
         my_db = my_client["fusion_db"]
         my_col = my_db["customers"]
-        if my_col.count_documents({"spotifyId": int(user_id)}) > 0:
+        if user_id.isdigit():
+            print("1")
+            spotify_id = int(user_id)
+        else:
+            print("2")
+            spotify_id = str(user_id)
+        if my_col.count_documents({"spotifyId": int(spotify_id)}) > 0:
             print("Already exists")
         else:
             my_col.insert_one(json_data)
